@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--声明路径配置文件位置-->
+    <context:property-placeholder location="classpath:userPath.properties"/>
+
+    <!--驱动注解-->
+    <mvc:annotation-driven/>
+
+    <!--声明组件扫描器-->
+    <context:component-scan base-package="com.person.website.web"/>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/static/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!--文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--上传图片最大的大小 10M-->
+        <property name="maxUploadSize" value="1048000000"/>
+        <!--设置默认编码-->
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
+
+    <!--静态资源加载-->
+    <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/css/**" location="/static/css"/>
+    <mvc:resources mapping="/js/**" location="/static/js"/>
+    <mvc:resources mapping="/font/**" location="/static/font"/>
+    <mvc:resources mapping="/fonts/**" location="/static/fonts"/>
+    <mvc:resources mapping="/img/**" location="/static/img"/>
+    <mvc:resources mapping="/layui/**" location="/static/layui"/>
+    
+    <!--配置图片的映射文件位置-->
+    <mvc:resources mapping="/upload/**" location="E:/xiaomuzi/"/>
+</beans>

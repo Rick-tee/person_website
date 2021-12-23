@@ -1,0 +1,105 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人网站首页</title>
+    <meta name="keywords" content="个人网站,热门个人网站,回忆网站">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/base.css" rel="stylesheet">
+    <link href="static/css/m.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/mystyle.css">
+    <!--layui的css核心文件-->
+    <link rel="stylesheet" href="static/layui/css/layui.css" type="text/css">
+    <!--bootstrap的css核心文件-->
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <!--jquery的js文件-->
+    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <!--bootstrapd的js核心文件-->
+    <script type="application/javascript" src="static/js/bootstrap.js"></script>
+    <script src="static/js/bootstrap.js"></script>
+    <!--layui的js核心文件-->
+    <script src="static/layui/layui.js" type="application/javascript"></script>
+    <script src="static/js/comm.js"></script>
+    <!--jquery cookie插件-->
+    <script type="application/javascript" src="static/js/jquery.cookie.js"></script>
+</head>
+<body>
+<header>
+    <div class="box">
+        <!--嵌入网页-->
+        <div class="logo"><a href="#"><img src="static/img/logo.png" alt="logo"></a></div>
+        <div class="ad_top"><a href="#"><img src="static/img/top.png" alt="人生多彩！"></a></div>
+
+        <!--登录注册部分-->
+        <div class="contact_icon" style="float: left;margin-left: 20px;width: auto">
+
+            <!--头像部分-->
+            <div class="c1" style="float: left">
+                <img src="static/img/default.png" id="avatar" alt="网络不佳" id="profilePicture">
+            </div>
+
+            <!--个人中心模块-->
+            <div style="width: 300px;margin-top: 23px;padding-left: 10px;">
+                <!--未登录部分-->
+                <span class="font_color" style="margin-left: 10px;">
+          <span id="login_register" style="font-family: 楷书;color: #ff622b">
+              <a href="login.html">登录 / 注册 </a>
+          </span>
+                  <span class="layui-btn-container" id="pull_down_menu">
+          <button class="layui-btn layui-btn-primary layui-border-orange select" style="margin-top: -9px;">
+            下拉菜单
+            <i class="layui-icon layui-icon-down layui-font-5"></i>
+          </button>
+        </span>
+        </span>
+            </div>
+
+        </div>
+        <div class="clear"></div>
+        <nav>
+            <ul id="starlist">
+                <li><a href="index.html">网站首页</a></li>
+                <li class="menu"><a href="#">所有内容</a>
+                    <ul class="sub">
+                        <li><a href="javascript:void(0)" onclick="window.location.reload()">热门视频</a></li>
+                        <li><a href="javascript:void(0)" onclick="popularMusic()">热门音乐</a></li>
+                        <li><a href="javascript:void(0)">相册广场</a></li>
+                    </ul>
+                    <span></span></li>
+                <li><a href="javascript:void(0)" onclick="window.location.reload()">热门视频</a></li>
+                <li><a href="javascript:void(0)" onclick="popularMusic()">热门音乐</a></li>
+                <li><a href="javascript:void(0)">相册广场</a></li>
+                <li><a href="javascript:void(0)">简历广场</a></li>
+            </ul>
+            <h2 id="mnavh"><span class="navicon"></span></h2>
+            <div class="is-search"><i></i></div>
+            <div class="search-page">
+                <div class="search_box">
+                    <div class="go-left"></div>
+                    <div class="search">
+                        <form action="http://zhuanti.ip3q.com/e/search/index.php" method="post" name="searchform"
+                              id="searchform">
+                            <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词"
+                                   style="color: rgb(153, 153, 153);"
+                                   onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}"
+                                   onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+                            <input name="show" value="title" type="hidden">
+                            <input name="tempid" value="1" type="hidden">
+                            <input name="tbname" value="news" type="hidden">
+                            <input name="Submit" class="input_submit" value="搜索" type="button">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--search end-->
+        </nav>
+        <div class="clear"></div>
+    </div>
+</header>
+
+<!--页面的动态加载-->
+<iframe scrolling="no" frameborder="0" width="100%" height="100%" src="videotail.html" id="iframe"></iframe>
+<a href="#" title="返回顶部" class="icon-top"></a>
+</body>
+<!--导入index.js文件-->
+<script type="application/javascript" src="static/js/index.js"></script>
+</html>

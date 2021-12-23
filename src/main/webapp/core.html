@@ -1,0 +1,237 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人网站首页</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="referrer" content="never" />
+    <meta name="keywords" content="个人网站,热门个人网站,回忆网站">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/base.css" rel="stylesheet">
+    <link href="static/css/m.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/mystyle.css">
+    <!--layui的css核心文件-->
+    <link rel="stylesheet" href="static/layui/css/layui.css" type="text/css">
+    <!--bootstrap的css核心文件-->
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <!--jquery的js文件-->
+    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <!--bootstrapd的js核心文件-->
+    <script type="application/javascript" src="static/js/bootstrap.js"></script>
+    <script src="static/js/bootstrap.js"></script>
+    <!--layui的js核心文件-->
+    <script src="static/layui/layui.js" type="application/javascript"></script>
+    <script src="static/js/comm.js"></script>
+    <!--引入index.js-->
+    <script type="application/javascript" src="static/js/index.js"></script>
+    <!--引入core.js-->
+    <script type="application/javascript" src="static/js/core.js"></script>
+    <!--jquery cookie插件-->
+    <script type="application/javascript" src="static/js/jquery.cookie.js"></script>
+    <script type="application/javascript" src="static/js/sweetalert.min.js"></script>
+    <!--进入图片放大-->
+    <script type="application/javascript" src="static/js/pictureProcessing.js"></script>
+
+</head>
+<body>
+
+<br><br>
+<!-- 轮播图部分 -->
+<div align="center" style="width: 100%;" class="banner" hidden id="bigBanner">
+			<span style="width: 200px;height: 440px;color: green;margin-left: 70px;" id="one">
+				<img src="static/img/mywishbot.jpg" width="200px" height="200px" style="border-radius: 4px">
+				<p style="font-family: whisper">我想说的话...</p>
+				<p class="tell">
+					<span id="left_whispers">
+						<textarea id="left_whispers_context" cols="6" rows="4" style="resize: vertical" readonly></textarea>
+					</span>
+				</p>
+			</span>
+    <span style="width: 200px;height: 440px;color: green;margin-right: 70px;" id="two">
+				<img src="static/img/mytalkbot.jpg" width="200px" height="200px" style="border-radius: 4px">
+				<p style="font-family: whisper">我的悄悄话...</p>
+				<p class="tell">
+					<span id="right_whispers">
+						<textarea id="right_whispers_context" cols="6" rows="4" style="resize: vertical" readonly></textarea>
+					</span>
+				</p>
+			</span>
+    <div class="layui-carousel" id="banner">
+        <div carousel-item="" style="border-radius: 10px">
+            <div><img src="static/img/myvideomid.jpg"></div>
+            <div><img src="static/img/mymusicmid.jpg"></div>
+            <div><img src="static/img/mypicturemid.jpg"></div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="clear"></div>
+
+<!--中部标签-->
+<div class="banner_box">
+    <ul class="banner">
+        <li><a href="#" onclick="myVideo($.cookie('user'))"><img src="static/img/myvideomid.jpg" class="my_top">
+            <section><span>我的视频</span>
+                <p>视频说明</p>
+            </section>
+        </a></li>
+        <li><a href="#" onclick="myPlaylist($.cookie('user'))"><img src="static/img/mymusicmid.jpg" class="my_top">
+            <section><span>我的歌单</span>
+                <p>歌曲说明</p>
+            </section>
+        </a></li>
+        <li><a href="#" onclick="myPicture($.cookie('user'))"><img src="static/img/mypicturemid.jpg" class="my_top">
+            <section><span>美丽瞬间</span>
+                <p>相册说明</p>
+            </section>
+        </a></li>
+    </ul>
+</div>
+
+<div class="featured_pics">
+
+</div>
+
+<div class="box">
+    <div class="featured_news">
+        <div class="featured_nav">
+            <h2 class="h_title">精彩推荐</h2>
+            <ul id="tab">
+                <li class="tab-current"><a id="popularVideos" href="#">热门视频</a></li>
+                <li><a href="#" id="popularPlaylist">热门歌单</a></li>
+                <li><a href="#" id="popularPictures">相册广场</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div id="tab-content">
+            <!--热门视频-->
+            <section class="tab-box">
+                <div class="all_videos" style="flex: revert">
+                    <ul id="video">
+                    </ul>
+
+                    <div class="epages">
+                        &nbsp;&nbsp;&nbsp;
+                        <b id="videoFirst">1</b>&nbsp;
+                        <a href="javascript:void(0)" id="videoPreviousPage"
+                           onclick="videoPreviousPage()">上一页</a>&nbsp;
+                        <a href="javascript:void(0)" id="videoNextPage" onclick="videoNextPage()">下一页</a>&nbsp;
+                        <a href="javascript:void(0)" id="videoPage" onclick="videoLastPage()">尾页</a>
+                        <p>共&nbsp;<span id="videoTotalPageNumber">0</span>页</p>
+                    </div>
+                </div>
+            </section>
+
+            <!--热门歌单-->
+            <section class="tab-box">
+                <div class="box">
+                    <div class="photos">
+                        <ul id="music">
+                            <!--建议两排 8个-->
+                        </ul>
+                    </div>
+                    <div class="epages">
+                        &nbsp;&nbsp;&nbsp;
+                        <b id="musicFirst">1</b>&nbsp;
+                        <a href="javascript:void(0)" id="musicPreviousPage"
+                           onclick="musicPreviousPage()">上一页</a>&nbsp;
+                        <a href="javascript:void(0)" id="musicNextPage" onclick="musicNextPage()">下一页</a>&nbsp;
+                        <a href="javascript:void(0)" id="musicPage" onclick="musicLastPage()">尾页</a>
+                        <p>共&nbsp;<span id="musicTotalPageNumber">0</span>页</p>
+                    </div>
+                </div>
+            </section>
+
+            <!--热门相册-->
+            <section class="tab-box">
+                <!--图片存放-->
+                <div class="box">
+                    <div class="photos">
+                        <ul id="picList">
+                            <!--建议两排 8个-->
+                        </ul>
+                    </div>
+                    <div class="epages">&nbsp;
+                        <b id="picFirst">1</b>&nbsp;
+                        <a href="javascript:void(0)" id="picPreviousPage"
+                           onclick="picPreviousPage(pictureList)">上一页</a>&nbsp;
+                        <a href="javascript:void(0)" id="picNextPage"
+                           onclick="picNextPage(pictureList)">下一页</a>&nbsp;
+                        <a href="javascript:void(0)" id="picLastPage" onclick="picLastPage(pictureList)">尾页</a>
+                        <p>共&nbsp;<span id="picTotalPageNumber">0</span>页</p>
+                    </div>
+                </div>
+
+                <!-- 图片放大 -->
+                <div id="outerdiv"
+                     style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+                    <div id="innerdiv" style="position:absolute;">
+                        <img id="bigimg" style="border:5px solid #fff;" src="" />
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="clear"></div>
+</div>
+
+<script>
+    /*图片轮播*/
+    layui.use(['carousel', 'form'], function() {
+        var carousel = layui.carousel,
+            form = layui.form;
+
+        //图片轮播
+        carousel.render({
+            elem: '#banner',
+            width: '778px',
+            height: '440px',
+            interval: 5000
+        });
+
+        //事件
+        carousel.on('change(test4)', function(res) {
+            console.log(res)
+        });
+
+        var $ = layui.$,
+            active = {
+                set: function(othis) {
+                    var THIS = 'layui-bg-normal',
+                        key = othis.data('key'),
+                        options = {};
+
+                    othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                    options[key] = othis.data('value');
+                    ins3.reload(options);
+                }
+            };
+
+        //监听开关
+        form.on('switch(autoplay)', function() {
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function() {
+            var value = this.value,
+                options = {};
+            if (!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function() {
+            var othis = $(this),
+                type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+</script>
+
+</body>
+</html>

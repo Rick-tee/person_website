@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>个人简历</title>
+    <link rel="stylesheet" href="../../../static/css/mystyle.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/typo.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <!--引入jquery-->
+    <script src="../../../static/js/jquery-3.6.0.min.js"></script>
+    <!--引入jquery cookie js文件-->
+    <script type="application/javascript" src="../../../static/js/jquery.cookie.js"></script>
+    <!--引入sweetalert-->
+    <script src="../../../static/js/sweetalert.min.js"></script>
+    <!--引入简历resume-->
+    <script src="assets/js/resume.js"></script>
+    <script>
+        function loading() {
+            document.getElementsByClassName('avatar')[0].style.display = 'block';
+            document.getElementsByClassName('loading')[0].style.display = 'none';
+        }
+    </script>
+</head>
+
+<body>
+
+    <header class="header"></header>
+
+    <article class="container">
+        <section class="side" id="side">
+            <!-- 个人肖像 -->
+            <section class="me">
+
+                <!-- 头像照片 -->
+                <img id="avatar" class="avatar" width="80px" height="80px" src="">
+                <br>
+                <input type="radio" name="chose" id="update" value="保存" checked="checked">保存
+                <input type="radio" name="chose" id="modify" value="修改">修改
+                <h1 class="name"><input type="text" id="name" placeholder="您的姓名" required></h1>
+                <h4 class="info-job"><input type="" id="jobPosts" placeholder="您的求职岗位" required></h4>
+            </section>
+
+            <!-- 基本信息 -->
+            <section class="profile info-unit">
+                <h2>
+                    <i class="fa fa-user" aria-hidden="true"></i>基本信息</h2>
+                <hr/>
+                <ul>
+                    <li>
+                        <label>个人信息</label>
+                        <span><input type="text" id="confirmName" placeholder="姓名" disabled required> / <input id="sex" placeholder="你的性别：男 or 女" required> / <input type="number" id="age" placeholder="您的年龄" required>岁</span>
+                    </li>
+                    <li>
+                        <label>计算机水平</label>
+                        <span><input type="text" id="computerSkill" placeholder="计算机水平（选填）"></span>
+                    </li>
+                </ul>
+
+            </section>
+
+            <!-- 联系方式 -->
+            <section class="contact info-unit">
+                <h2>
+                    <i class="fa fa-phone" aria-hidden="true"></i>联系方式</h2>
+                <hr/>
+                <ul>
+                    <li>
+                        <label>手机</label><br>
+                        <input type="tel" placeholder="手机号码" id="tel">
+                    </li>
+                    <li>
+                        <label>邮箱</label><br>
+                        <input type="email" id="email" placeholder="电子邮箱">
+                    </li>
+                    <li>
+                        <label>个人主页</label><br>
+                        <input type="text" id="homepage" placeholder="个人主页（选填）">
+                    </li>
+                    <li>
+                        <label>Github</label>
+                        <input type="text" id="gitHub" placeholder="GitHub作品地址（选填）">
+                    </li>
+                    <li>
+                        <label>Gitee</label>
+                        <input type="text" id="gitee" placeholder="Gitee作品地址（选填）">
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 技能点 -->
+            <section class="skill info-unit">
+                <h2>
+                    <i class="fa fa-code" aria-hidden="true"></i>技能清单</h2>
+                <hr/>
+                <ul>
+                    <li>
+                        <label>后端框架：</label>
+                        <p><input type="text" id="backendFramework" placeholder="多个技能请使用/分割"></p>
+                         <!--<progress value="85" max="100"></progress> -->
+                    </li>
+                    <br>
+                    <li>
+                        <label>前端框架：</label>
+                        <p><input type="text" id="frontEndFramework" placeholder="多个技能请使用/分割"></p>
+                        <!-- <progress value="90" max="100"></progress> -->
+                    </li>
+                    <br>
+                    <li>
+                        <label>数据库相关：</label>
+                        <p><input type="text" id="databaseRelated" placeholder="多个技能请使用/分割"></p>
+                    </li>
+                    <br>
+                    <li>
+                        <label>开发工具：</label>
+                        <p><input type="text" id="developmentTools" placeholder="多个技能请使用/分割"></p>
+                    </li>
+                    <br>
+                    <li>
+                        <p>版本管理-数据库版本管理：</p>
+                        <p><input type="text" id="versionManagement" placeholder="多个技能请使用/分割"></p>
+                    </li>
+                    <br>
+                    <li>
+                        <p>其余技能点</p>
+                    </li>
+                    <li>
+                        <p><input type="text" id="otherSkills" placeholder="多个技能请使用/分割"></p>
+                    </li>
+                </ul>
+            </section>
+        </section>
+
+        <section class="main">
+
+            <!-- 教育经历 -->
+            <section class="edu info-unit">
+                <h2>
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>个人信息</h2>
+                <hr/>
+                <ul>
+                    <li>
+                        <span id="personName"></span>
+                        <p><input type="text" id="education" placeholder="请填写学历"> / <input type="text" id="workExperience" placeholder="请填写工作经验年限"> /
+                            <input type="text" id="status" placeholder="状态：找工作|离职|上学">/ 到岗时间:<input type="date" id="dutyTime"></p>
+                        <p>期望职位：<input type="text" placeholder="多个使用/分隔" id="dreamPosition"> </p>
+                        <p>期望城市：<select id="dreamCity"></select></p>
+                    </li>
+                </ul>
+
+            </section>
+
+            <!-- 工作经历 -->
+            <section class="work info-unit">
+                <h2>
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>工作经历</h2>
+                <hr/>
+                <ul>
+                    <!-------------------------------------------------------------->
+                    <li>
+                        <h3>
+                            <span><input type="text" placeholder="公司名称" id="companyName"></span>
+                            <time><input type="date" id="startDate">--<input type="date" id="endDate"></time>
+                        </h3>
+                        <p style="font-weight:bold;"><input type="text" placeholder="开发项目名" id="developmentProjectName"></p>
+                        <ul class="info-content">
+                            <li>
+                                <textarea id="projectIntro" placeholder="项目简介" cols="125%" rows="5"></textarea>
+                            </li>
+
+                            <!--离职原因-->
+                            <li>
+                                <textarea id="reasonForLeaving" placeholder="离职原因" cols="125%" rows="6"></textarea>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-------------------------------------------------------------->
+                </ul>
+            </section>
+
+            <!-- 项目经验 -->
+            <section class="project info-unit">
+                <h2>
+                    <i class="fa fa-terminal" aria-hidden="true"></i>其他项目</h2>
+                <hr/>
+                <ul id="project">
+                    <!------------------------------------------------------->
+                    <li>
+                        <h3>
+                            <span><input type="text" id="projectName" placeholder="请填写项目名"></span>
+                        </h3>
+                        <ul class="info-content">
+                            <li><textarea id="projectDescription" placeholder="请填写项目描述" cols="125%" rows="5"></textarea></li>
+                        </ul>
+                    </li>
+                    <!------------------------------------------------------->
+                </ul>
+            </section>
+
+            <!-- 自我评价 -->
+            <section class="work info-unit">
+                <h2>
+                    <i class="fa fa-pencil" aria-hidden="true"></i>自我评价/期望</h2>
+                <hr/>
+                <p>
+                    <textarea id="selfEvaluation" cols="130%" rows="8"></textarea>
+                </p>
+                </section>
+        </section>
+    </article>
+
+    <canvas id="christmasCanvas" style="top: 0px; left: 0px; z-index: 5000; position: fixed; pointer-events: none;">
+    </canvas>
+    <script src="./assets/js/index.js"></script>
+    <script>
+        var snow = function () {
+            var b = document.getElementById("christmasCanvas"), a = b.getContext("2d"), d = window.innerWidth,
+                c = window.innerHeight;
+            b.width = d;
+            b.height = c;
+            for (var e = [], b = 0; b < 70; b++) {
+                e.push({x: Math.random() * d, y: Math.random() * c, r: Math.random() * 4 + 1, d: Math.random() * 70})
+            }
+            var h = 0;
+            var color = ["rgba(222,47,124,0.6)","rgba(215,209,87,0.6)","rgba(194,148,69,0.6)","rgba(75,213,148,0.6)",
+                "rgb(69,199,15)", "rgb(44,150,220)","rgba(226,102,231,0.6)","rgba(113,25,201,0.6)"];
+            let number = Math.ceil(Math.random()*color.length-1);
+            console.log("->",number)
+            window.intervral4Christmas = setInterval(function () {
+                a.clearRect(0, 0, d, c);
+                a.shadowBlur = 5;
+                a.shadowColor = "rgba(245,196,238,0.9)";
+                a.fillStyle = color[number];
+                a.beginPath();
+                for (var b = 0; b < 70; b++) {
+
+                    var f = e[b];
+                    a.moveTo(f.x, f.y);
+                    a.arc(f.x, f.y, f.r, 0, Math.PI * 2, !0)
+
+
+                }
+                a.fill();
+                h += 0.01;
+                for (b = 0; b < 70; b++) {
+                    if (f = e[b], f.y += Math.cos(h + f.d) + 1 + f.r / 2, f.x += Math.sin(h) * 2, f.x > d + 5 || f.x < -5 || f.y > c) {
+                        e[b] = b % 3 > 0 ? {x: Math.random() * d, y: -10, r: f.r, d: f.d} : Math.sin(h) > 0 ? {
+                            x: -5,
+                            y: Math.random() * c,
+                            r: f.r,
+                            d: f.d
+                        } : {x: d + 5, y: Math.random() * c, r: f.r, d: f.d}
+                    }
+                }
+            }, 70);
+        }
+        snow();
+    </script>
+</body>
+
+</html>
