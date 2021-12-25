@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>订单管理</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+</head>
+<body>
+<form class="layui-form xbs" action="">
+    <div class="layui-form-pane">
+        <div class="layui-form-item" style="display: inline-block;">
+            <div class="layui-input-inline"><input type="text" name="uname" placeholder="用户编号/订单编号" autocomplete="off"
+                                                   class="layui-input"></div>
+            <div class="layui-input-inline" style="width:80px">
+                <button class="layui-btn" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+            </div>
+        </div>
+    </div>
+</form>
+<table id="order_list" lay-filter="test"></table>
+<script src="../layui/layui.js"></script><!-- 开关 -->
+<script type="text/html" id="switchTpl"> <input type="checkbox" name="lock" value="{{d.user_id}}" lay-skin="switch"
+                                                lay-text="解冻|冻结" lay-filter="lockState" {{ d.user_id== 123123123
+                                                ? 'checked' : '' }}></script>
+<script> layui.use('table', function () {
+    var table = layui.table;/*第一个实例*/
+    table.render({
+        elem: '#order_list',
+        height: 312,
+        url: '/demo/table/user/' /*数据接口*/,
+        page: true /*开启分页*/,
+        cols: [[ /*表头*/ {
+            field: 'zizeng',
+            width: 80,
+            title: '序号',
+            fixed: 'left',
+            templet: '#zizeng',
+            sort: true
+        }, {field: 'user_id', title: '用户编号', width: 100, fixed: 'left'}, {
+            field: 'pay_id',
+            title: '订单编号',
+            width: 100,
+            fixed: 'left'
+        }, {field: 'pay_amount', title: '支付金额', width: 120, sort: true}, {
+            field: 'pay_time',
+            title: '支付时间',
+            width: 120,
+            sort: true
+        }, {field: 'pay_state', title: '支付状态', width: 120,sort: true
+        }]],
+        toolbar: true/*开启打印，导出*/
+    });/*监听开关操作*/
+    form.on('switch(lockState)', function (obj) {
+        layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
+    });
+});</script>
+<script type="text/html" id="zizeng"> {{d.LAY_TABLE_INDEX+1}}</script>
+</body>
+</html>

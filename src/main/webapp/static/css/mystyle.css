@@ -1,0 +1,41 @@
+/*以下是自写样式*/
+#one{
+    float:left;color:blue;
+    padding-left: 30px;
+}
+#two{
+    float:right;color:red;
+    padding-right: 30px;
+}
+
+/*服务器字体*/
+@font-face {
+    font-family: whisper;
+    src: url("../fonts/whisper.ttf");
+}
+
+.tell{
+    font-family: whisper;
+    word-wrap: break-word;
+    color: #d60f0f;
+    display: -webkit-box;
+    -webkit-box-orient: vertical; /* 设置对齐模式 */
+    -webkit-line-clamp: 11; /* 设置显示行数 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+/*首页登录注册样式设置*/
+#login_register{
+    font-family: "微软雅黑";
+    color: #242423;
+    font-size: 17px;
+}
+
+/*中部图片显示*/
+.my_top{
+    width: 480px;
+    height: 300px;
+}

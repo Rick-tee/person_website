@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+
+    <link rel="stylesheet" href="../../css/personal/base.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/personal/common-less(1).css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/personal/moco.min.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/personal/common-less.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/personal/profile-less.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/personal/personal.css" type="text/css"/>
+    <link href="http://cj.ip3q.com/skin/html/css/base.css" rel="stylesheet">
+    <link href="http://cj.ip3q.com/skin/html/css/m.css" rel="stylesheet">
+    <script src="http://cj.ip3q.com/skin/html/js/jquery-3.6.0.min.js"></script>
+    <script src="http://cj.ip3q.com/skin/html/js/comm.js"></script>
+    <!--<script src="http://cj.ip3q.com/skin/html/js/open.js"></script>-->
+    <script type="text/javascript" src="http://cj.ip3q.com/e/data/js/ajax.js"></script>
+    <!--引入layui的核心css-->
+    <link rel="stylesheet" href="../../layui/css/layui.css" type="text/css">
+    <!--引入jquery核心js文件-->
+    <script type="application/javascript" src="../../js/jquery-3.6.0.js"></script>
+    <!--引入jquery cookie js文件-->
+    <script type="application/javascript" src="../../js/jquery.cookie.js"></script>
+    <!--引入layui的核心js文件-->
+    <script type="application/javascript" src="../../layui/layui.js"></script>
+    <!--引入第三方弹窗-->
+    <script type="application/javascript" src="../../js/sweetalert.min.js"></script>
+    <!--引入register.js-->
+    <script type="application/javascript" src="../../js/register.js"></script>
+    <!--引入personal.js文件-->
+    <script type="application/javascript" src="../../js/personal.js"></script>
+</head>
+<body>
+<div id="header">
+    <div class="page-container" id="nav">
+        <!--点击跳转首页-->
+        <div id="logo" class="logo"><a href="#" target="_self" class="hide-text" title="首页">小木子网站</a></div>
+        <ul class="nav-item">
+
+            <li>
+                <a href="../../../index.html" target="_self">网站首页</a>
+            </li>
+            <li><a href="#" onclick="popularVideos()">热门视频<i class="icn-new"></i></a></li>
+            <li>
+                <a href="#" onclick="popularMusic()">热门音乐</a>
+            </li>
+            <!--<li><a href="#">相册广场</a></li>-->
+            <!--<li><a href="#">热门简历</a></li>-->
+            <li><a href="#" target="_self" onclick="resume()">个人简历</a></li>
+            <li><a href="#" target="_self" onclick="quit()">退出</a></li>
+        </ul>
+
+        <ul class="clearfix logined">
+            <!--用户顶部头像-->
+            <li class="set_btn user-card-box" id='header-user-card'>
+                <a id="header-avator" class="user-card-item js-header-avator" action-type="my_menu" href="#"
+                   target="_self">
+                    <img width="40" height="40" src="../../img/default.png" id="avatar">
+                    <span style="display: none;">我的头像</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="main">
+
+    <div class="page-settings">
+        <div class="top">
+            <div class="w960 mauto top_title">
+                <p>个人设置</p>
+            </div>
+        </div>
+
+        <div class="setting pb10">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">基本信息</li>
+                        <li onclick="myChose(this)">我的视频</li>
+                        <li onclick="myChose(this)">我的歌单</li>
+                        <li onclick="myChose(this)">我的相册</li>
+                    </ul>
+                    <!--具体展示部分-->
+                    <div class="layui-tab-content" style="height: 100px;">
+                        <!--基本信息填写-->
+                        <div class="layui-tab-item layui-show">
+                            <div class="formBox">
+                                <div class="setting-wrap setting-profile">
+
+                                    <div class="wlfg-wrap clearfix ">
+                                        <label class="label-name">头像：</label>
+                                        <div class="rlf-group">
+                                            <!--上传头像展示部分-->
+                                            <img class="fl avator-img layui-upload-img" id="demo1"
+                                                 src="../../img/default.png"
+                                                 data-portrait="58492fe600012e8e01800180" width="180"
+                                                 height="180">
+                                            <div class="fl ml20 pr">
+                                                <div id="avator-btns" class="avator-btn-inner">
+
+                                                    <div class="avator-btn-wrap">
+                                                        <form target="uploadtarget" method="post"
+                                                              enctype="multipart/form-data">
+                                                            <!-- 文件上传部分 -->
+                                                            <div class="layui-upload">
+                                                                <button type="button" class="layui-btn"
+                                                                        id="test1"
+                                                                        style="margin-top: 120px;margin-left: 80px;">
+                                                                    上传图片
+                                                                </button>
+                                                                <!-- 文件上传进度条 -->
+                                                                <div
+                                                                        style="width: 95px;margin-top: 20px;margin-left: 80px;">
+                                                                    <div class="layui-progress layui-progress-big"
+                                                                         lay-showpercent="yes" lay-filter="demo"
+                                                                         style="color: #a2e568;font-size: small">
+                                                                        0%
+                                                                        <div class="layui-progress-bar"
+                                                                             lay-percent=""></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cb"></div>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                    </div>
+
+
+                                    <form id="profile">
+
+                                        <!--空间容量-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="userName">空间容量：</label>
+                                            <div class="rlf-group">
+                                                <p class="rlf-tip-wrap errorHint color-red"
+                                                   style="margin-top: 8px;">
+                                                    <span id="free_space" class="color-red">10</span>
+                                                    <input type="button"
+                                                           class="layui-btn layui-btn-warm layui-btn-xs"
+                                                           onclick="pay()" value="提升空间容量" id="pay">
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!--用户名-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="userName">用户名：</label>
+                                            <div class="rlf-group">
+                                                <input type="text" name="userName" id="userName"
+                                                       autocomplete="off" data-validate="require-nick"
+                                                       class="moco-form-control" placeholder="请输入用户名."/>
+                                                <p class="rlf-tip-wrap errorHint color-red" id="userNameError">
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!--密码-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="password">密码：</label>
+                                            <div class="rlf-group">
+                                                <input type="password" name="password" id="password"
+                                                       autocomplete="off" data-validate="require-nick"
+                                                       class="moco-form-control" placeholder="请输入密码."/><input
+                                                    type="button" value="更新密码" class="btn btn-blue btn-sm"
+                                                    id="updatePwd">
+                                                <p class="rlf-tip-wrap errorHint color-red" id="pwdError"></p>
+                                            </div>
+                                        </div>
+
+                                        <!--性别-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name h16 lh16">性别：</label>
+                                            <div class="rlf-group rlf-radio-group">
+                                                <label class="lh16">
+                                                    <input type="radio" hidefocus="true" value="1" id="nan"
+                                                           checked name="sex">男</label>
+                                                <label class="lh16">
+                                                    <input type="radio" hidefocus="true" value="0" id="nv"
+                                                           name="sex">女</label>
+                                            </div>
+                                        </div>
+
+                                        <!--手机号码-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="phone">手机号码：</label>
+                                            <div class="rlf-group">
+                                                <input type="text" name="phone" id="phone" autocomplete="off"
+                                                       data-validate="require-nick" class="moco-form-control"
+                                                       placeholder="请输入手机号码."/>
+                                                <p class="rlf-tip-wrap errorHint color-red" id="phoneError"></p>
+                                            </div>
+                                        </div>
+
+                                        <!--电子邮箱-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="email">电子邮箱：</label>
+                                            <div class="rlf-group">
+                                                <input type="text" name="email" id="email" autocomplete="off"
+                                                       data-validate="require-nick" class="moco-form-control"
+                                                       placeholder="请输入电子邮箱."/>
+                                                <p class="rlf-tip-wrap errorHint color-red" id="emailError"></p>
+                                            </div>
+                                        </div>
+
+                                        <!--城市-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="province-select">城市：</label>
+                                            <div class="rlf-group profile-address">
+                                                <select id="province-select" class='moco-form-control'
+                                                        hidefocus="true">
+                                                </select>
+
+                                                <select class='moco-form-control' id="city-select"
+                                                        hidefocus="true">
+                                                </select>
+
+                                                <select class='moco-form-control mr0' id="area-select"
+                                                        hidefocus="true">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!--详细地址-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="address">详细地址：</label>
+                                            <div class="rlf-group">
+                                                <input type="text" name="address" id="address"
+                                                       autocomplete="off" data-validate="require-nick"
+                                                       class="moco-form-control" placeholder="请输入详细地址."/>
+                                                <p class="rlf-tip-wrap errorHint color-red" id="addressError">
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!--左边心愿-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="leftWish">左边心愿：</label>
+                                            <div class="rlf-group">
+                                                <div class="pr">
+															<textarea name="wish" id="leftWish" rows="5"
+                                                                      class="noresize js-sign moco-form-control"
+                                                                      placeholder="还可以输入130个字符."></textarea>
+                                                    <p class="numCanInput js-numCanInput " id="leftWishError">
+                                                        还可以输入130个字符</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--右边悄悄话-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name" for="rightWhisper">右边悄悄话：</label>
+                                            <div class="rlf-group">
+                                                <div class="pr">
+															<textarea name="rightWhisper" id="rightWhisper" rows="5"
+                                                                      class="noresize js-sign moco-form-control"
+                                                                      placeholder="还可以输入130个字符."></textarea>
+                                                    <p class="numCanInput js-numCanInput "
+                                                       id="rightWhisperError">
+                                                        还可以输入130个字符</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wlfg-wrap clearfix" align="center">
+													<span id="profile-submit" hidefocus="true" aria-role="button"
+                                                          class="rlf-btn-green btn-block profile-btn"
+                                                          onclick="save()">保存</span><br>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--我的视频-->
+                        <div class="layui-tab-item">
+                            <div class="formBox">
+                                <div class="setting-wrap setting-profile">
+                                    <form id="myVideo">
+                                        <!--用户操作选择-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name h16 lh16">用户选择：</label>
+                                            <div class="rlf-group rlf-radio-group">
+                                                <label class="lh16">
+                                                    <input type="radio" value="0" class="chose2" name="chose2"
+                                                           onclick="myChose(this)">查看</label>
+                                                <label class="lh16">
+                                                    <input type="radio" value="1" class="chose2" name="chose2"
+                                                           onclick="myChose(this)" checked>新增</label>
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <!--视频操作-->
+                                        <div id="videoOperation1">
+                                            <!--视频名称-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name" for="videoName">视频册名：</label>
+                                                <div class="rlf-group">
+                                                    <input type="text" name="videoName" id="videoName"
+                                                           autocomplete="off" data-validate="require-nick"
+                                                           class="moco-form-control" placeholder="请输入视频册名称."/>
+                                                    <p class="rlf-tip-wrap errorHint color-red"
+                                                       id="videoNameError"></p>
+                                                </div>
+                                            </div>
+
+                                            <!--视频封面-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name">视频封面：</label>
+                                                <div class="rlf-group">
+                                                    <img class="fl avator-img layui-upload-img" id="demo2"
+                                                         width="180" height="180">
+                                                    <div class="fl ml20 pr">
+                                                        <div class="avator-btn-inner">
+
+                                                            <div class="avator-btn-wrap">
+                                                                <form target="uploadtarget" method="post"
+                                                                      enctype="multipart/form-data">
+                                                                    <!-- 文件上传部分 -->
+                                                                    <div class="layui-upload">
+                                                                        <button type="button" class="layui-btn"
+                                                                                id="test2"
+                                                                                style="margin-top: 120px;margin-left: 80px;">
+                                                                            上传视频封面
+                                                                        </button>
+                                                                        <!-- 文件上传进度条 -->
+                                                                        <div
+                                                                                style="width: 95px;margin-top: 20px;margin-left: 80px;">
+                                                                            <div class="layui-progress layui-progress-big"
+                                                                                 lay-showpercent="yes"
+                                                                                 lay-filter="demo2"
+                                                                                 style="color: #a2e568;font-size: small">
+                                                                                0%
+                                                                                <div class="layui-progress-bar"
+                                                                                     lay-percent=""></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cb"></div>
+                                                    <p class="rlf-tip-wrap errorHint color-red"></p>
+                                                </div>
+
+                                                <!--多视频上传-->
+                                                <div class="wlfg-wrap clearfix">
+                                                    <div class="layui-upload">
+                                                        <div class="layui-upload">
+                                                            <button type="button"
+                                                                    class="layui-btn layui-btn-normal"
+                                                                    id="testList2">选择多视频
+                                                            </button>
+                                                            <div class="layui-upload-list"
+                                                                 style="max-width: 1000px;">
+                                                                <table class="layui-table">
+                                                                    <colgroup>
+                                                                        <col>
+                                                                        <col width="150">
+                                                                        <col width="260">
+                                                                        <col width="150">
+                                                                    </colgroup>
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>文件名</th>
+                                                                        <th>大小</th>
+                                                                        <th>上传进度</th>
+                                                                        <th>操作</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody id="demoList2"></tbody>
+                                                                </table>
+                                                            </div>
+                                                            <button type="button"
+                                                                    id="testListAction2" hidden>
+                                                                开始上传
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <!--视频分类-->
+                                                <div class="wlfg-wrap clearfix">
+                                                    <label class="label-name" for="address">视频分类：</label><br>
+                                                    <div class="rlf-group rlf-radio-group">
+                                                        <label class="lh16">
+                                                            <input type="radio" hidefocus="true" value="1"
+                                                                   class="videoClassification"
+                                                                   name="videoClassification" checked>生活</label>
+                                                        <label class="lh16">
+                                                            <input type="radio" hidefocus="true" value="2"
+                                                                   class="videoClassification"
+                                                                   name="videoClassification">搞笑</label>
+                                                        <label class="lh16">
+                                                            <input type="radio" hidefocus="true" value="3"
+                                                                   class="videoClassification"
+                                                                   name="videoClassification">舞蹈</label>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <!--视频类型-->
+                                                <div class="wlfg-wrap clearfix">
+                                                    <label class="label-name" for="address">视频类型：</label><br>
+                                                    <div class="rlf-group rlf-radio-group">
+                                                        <label class="lh16">
+                                                            <input type="radio" hidefocus="true" value="1"
+                                                                   class="type2" name="type2">公开</label>
+                                                        <label class="lh16">
+                                                            <input type="radio" hidefocus="true" value="2"
+                                                                   class="type2" name="type2" checked>私有</label>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <!--保存-->
+                                                <div class="wlfg-wrap clearfix" align="center">
+															<span hidefocus="true" aria-role="button"
+                                                                  class="rlf-btn-green btn-block profile-btn"
+                                                                  id="myVideo2" onclick="myVideoSave(this)">保存</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--视频信息表格-->
+                                        <div id="videoOperation2">
+                                            <table class="layui-table"
+                                            lay-data="{url:'/xiaomuzi/video/getVideoList.action', id:'videoTable', escape: true}"
+                                                   lay-filter="test3" id="videoTable">
+                                                <thead>
+                                                <tr>
+                                                    <th lay-data="{field:'videoName', width:120, sort: true}">视频标题</th>
+                                                    <th lay-data="{field:'videoUrl', minWidth: 120}">视频地址</th>
+                                                    <th lay-data="{field:'videoPic', width:120}">视频封面</th>
+                                                    <th lay-data="{field:'videoClassification', minWidth: 100, templet: function(d) {
+                                                        switch(d.videoClassification){
+                                                            case 1: return '生活';break;
+                                                            case 2: return '搞笑';break;
+                                                            case 3: return '舞蹈';break;
+                                                        }
+                                                    }}">视频分类</th>
+                                                    <th lay-data="{field:'type', width:80, sort: true, edit: 'text', templet: function(d) {
+                                                        switch(d.type){
+                                                            case 1: return '公开';break;
+                                                            case 2: return '私有';break;
+                                                        }
+                                                    }}">类型</th>
+                                                    <th lay-data="{field:'videoState', width:100, sort: true, templet: function(d){
+                                                        switch(d.videoState){
+                                                            case 1: return '正常';break;
+                                                            case 2: return '禁用';break;
+                                                        }
+                                                    }}">视频状态</th>
+                                                    <th lay-data="{field:'uploadTime', width:150, sort: true, templet: function(d) {
+                                                    var date = new Date(d.uploadTime);
+                                                    return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日' + date.getHours() + '时' + date.getMinutes() + '分' + date.getSeconds() + '秒';
+                                                    }}">上传时间</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--我的歌单-->
+                        <div class="layui-tab-item">
+                            <div class="formBox">
+                                <div class="setting-wrap setting-profile">
+                                    <form id="myMusic">
+                                        <!--用户操作选择-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name h16 lh16">用户选择：</label>
+                                            <div class="rlf-group rlf-radio-group">
+                                                <label class="lh16">
+                                                    <input type="radio" hidefocus="true" value="0"
+                                                           class="chose3" name="chose3"
+                                                           onclick="myChose(this)">查看</label>
+                                                <label class="lh16">
+                                                    <input type="radio" hidefocus="true" value="1"
+                                                           class="chose3" name="chose3"
+                                                           onclick="myChose(this)" checked>新增</label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <!--歌单操作1-->
+                                        <div id="musicOperation1">
+                                            <!--歌单名称-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name" for="musicName">歌单名称：</label>
+                                                <div class="rlf-group">
+                                                    <input type="text" name="musicName" id="musicName"
+                                                           autocomplete="off" data-validate="require-nick"
+                                                           class="moco-form-control" placeholder="请输入歌单名称."/>
+                                                    <p class="rlf-tip-wrap errorHint color-red"
+                                                       id="musicNameError"></p>
+                                                </div>
+                                            </div>
+
+                                            <!--歌单封面-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name">歌单封面：</label>
+                                                <div class="rlf-group">
+                                                    <img class="fl avator-img layui-upload-img" id="demo3"
+                                                         width="180" height="180">
+                                                    <div class="fl ml20 pr">
+                                                        <div class="avator-btn-inner">
+
+                                                            <div class="avator-btn-wrap">
+                                                                <form target="uploadtarget" method="post"
+                                                                      enctype="multipart/form-data">
+                                                                    <!-- 文件上传部分 -->
+                                                                    <div class="layui-upload">
+                                                                        <button type="button" class="layui-btn"
+                                                                                id="test3"
+                                                                                style="margin-top: 120px;margin-left: 80px;">
+                                                                            上传歌单封面
+                                                                        </button>
+                                                                        <!-- 文件上传进度条 -->
+                                                                        <div
+                                                                                style="width: 95px;margin-top: 20px;margin-left: 80px;">
+                                                                            <div class="layui-progress layui-progress-big"
+                                                                                 lay-showpercent="yes"
+                                                                                 lay-filter="demo3"
+                                                                                 style="color: #a2e568;font-size: small">
+                                                                                0%
+                                                                                <div class="layui-progress-bar"
+                                                                                     lay-percent=""></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cb"></div>
+                                                    <p class="rlf-tip-wrap errorHint color-red"></p>
+                                                </div>
+
+                                            </div>
+
+                                            <!--多音频上传-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <div class="layui-upload">
+                                                    <div class="layui-upload">
+                                                        <button type="button" class="layui-btn layui-btn-normal"
+                                                                id="testList3">选择多歌曲
+                                                        </button>
+                                                        <div class="layui-upload-list"
+                                                             style="max-width: 1000px;">
+                                                            <table class="layui-table">
+                                                                <colgroup>
+                                                                    <col>
+                                                                    <col width="150">
+                                                                    <col width="260">
+                                                                    <col width="150">
+                                                                </colgroup>
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>文件名</th>
+                                                                    <th>大小</th>
+                                                                    <th>上传进度</th>
+                                                                    <th>操作</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody id="demoList3"></tbody>
+                                                            </table>
+                                                        </div>
+                                                        <button type="button"
+                                                                id="testListAction3" hidden>
+                                                            开始上传
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <!--音频分类-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name" for="address">歌单分类：</label><br>
+                                                <div class="rlf-group rlf-radio-group">
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="1"
+                                                               class="musicClassification"
+                                                               name="musicClassification" checked>伤感</label>
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="2"
+                                                               class="musicClassification"
+                                                               name="musicClassification">流行</label>
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="3"
+                                                               class="musicClassification"
+                                                               name="musicClassification">rap</label>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <!--音频类型-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name" for="address">歌单类型：</label><br>
+                                                <div class="rlf-group rlf-radio-group">
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="1"
+                                                               class="type3" name="type3">公开</label>
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="2"
+                                                               class="type3" name="type3" checked>私有</label>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <!--保存-->
+                                            <div class="wlfg-wrap clearfix" align="center">
+														<span hidefocus="true" aria-role="button"
+                                                              class="rlf-btn-green btn-block profile-btn"
+                                                              id="myMusic2" onclick="myMusicSave()">保存</span><br>
+                                            </div>
+                                        </div>
+
+                                        <!--歌单信息查看-->
+                                        <div id="musicOperation2">
+                                            <table class="layui-table"
+                                            lay-data="{url:'/xiaomuzi/music/getMusicList.action', id:'musicTable', escape: true}"
+                                                   lay-filter="test3" id="musicTable">
+                                                <thead>
+                                                <tr>
+                                                    <th lay-data="{field:'musicName', width:120, sort: true}">歌单名</th>
+                                                    <th lay-data="{field:'musicUrl', edit: 'text', minWidth: 120}">歌单地址</th>
+                                                    <th lay-data="{field:'musicPic', width:120}">歌单封面</th>
+                                                    <th lay-data="{field:'musicClassification', minWidth: 80},templet:function(d){
+                                                        switch(d.musicClassification){
+                                                            case 1: return '伤感';break;
+                                                            case 2: return '流行';break;
+                                                            case 3: return 'rap';break;
+                                                        }
+                                                    }">歌单分类</th>
+                                                    <th lay-data="{field:'type', width:80, sort: true,templet:function(d){
+                                                       switch(d.type){
+                                                            case 1: return '公开';break;
+                                                            case 2: return '私有';break;
+                                                        }
+                                                    }}">类型</th>
+                                                    <th lay-data="{field:'musicState', width:100, sort: true,templet:function(d){
+                                                        switch(d.musicState){
+                                                            case 1: return '正常';break;
+                                                            case 2: return '禁用';break;
+                                                        }
+                                                    }}">歌单状态</th>
+                                                    <th lay-data="{field:'uploadTime', width:150, sort: true, templet: function(d) {
+                                                    var date = new Date(d.uploadTime);
+                                                    return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日' + date.getHours() + '时' + date.getMinutes() + '分' + date.getSeconds() + '秒';
+                                                    }}">上传时间</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--我的相册-->
+                        <div class="layui-tab-item">
+                            <div class="formBox">
+                                <div class="setting-wrap setting-profile">
+                                    <form id="myPicture">
+                                        <!--用户操作选择-->
+                                        <div class="wlfg-wrap clearfix">
+                                            <label class="label-name h16 lh16">用户选择：</label>
+                                            <div class="rlf-group rlf-radio-group">
+                                                <label class="lh16">
+                                                    <input type="radio" hidefocus="true" value="0"
+                                                           class="chose4" name="chose4"
+                                                           onclick="myChose(this)">查看</label>
+                                                <label class="lh16">
+                                                    <input type="radio" hidefocus="true" value="1"
+                                                           class="chose4" name="chose4"
+                                                           onclick="myChose(this)" checked>新增</label>
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <!--相册操作-->
+                                        <div id="pictureOperation1">
+                                            <!--相册名称-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name" for="pictureName">相册名称：</label>
+                                                <div class="rlf-group">
+                                                    <input type="text" name="pictureName" id="pictureName"
+                                                           autocomplete="off" data-validate="require-nick"
+                                                           class="moco-form-control" placeholder="请输入相册名称."/>
+                                                    <p class="rlf-tip-wrap errorHint color-red"
+                                                       id="pictureNameError"></p>
+                                                </div>
+                                            </div>
+
+                                            <!--多图片上传-->
+                                            <div class="layui-upload">
+                                                <button type="button" class="layui-btn"
+                                                        id="test4">多图片上传
+                                                </button>
+                                                <blockquote class="layui-elem-quote layui-quote-nm"
+                                                            style="margin-top: 10px;">
+                                                    预览图：
+                                                    <div class="layui-upload-list" id="demo4"></div>
+                                                </blockquote>
+                                            </div>
+
+                                            <button type="button"
+                                                    id="testListAction4" hidden>
+                                                开始上传
+                                            </button>
+                                            <br>
+
+                                            <!--相册分类-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name" for="address">相册分类：</label><br>
+                                                <div class="rlf-group rlf-radio-group">
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="1"
+                                                               class="pictureClassification"
+                                                               name="pictureClassification" checked>人物</label>
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="2"
+                                                               class="pictureClassification"
+                                                               name="pictureClassification">风景</label>
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="3"
+                                                               class="pictureClassification"
+                                                               name="pictureClassification">旅行</label>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <!--相册类型-->
+                                            <div class="wlfg-wrap clearfix">
+                                                <label class="label-name" for="address">相册类型：</label><br>
+                                                <div class="rlf-group rlf-radio-group">
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="1"
+                                                               class="type4" name="type4">公开</label>
+                                                    <label class="lh16">
+                                                        <input type="radio" hidefocus="true" value="2"
+                                                               class="type4" name="type4" checked>私有</label>
+                                                </div>
+                                            </div>
+
+                                            <!--保存-->
+                                            <div class="wlfg-wrap clearfix" align="center">
+														<span hidefocus="true" aria-role="button"
+                                                              class="rlf-btn-green btn-block profile-btn"
+                                                              id="myPicture2" onclick="myPictureSave()">保存</span><br>
+                                            </div>
+                                        </div>
+                                        <!--相册信息查看-->
+                                        <div id="pictureOperation2">
+                                            <table class="layui-table"
+                                            lay-data="{url:'/xiaomuzi/picture/getPictureList.action', id:'pictureTable', escape: true}"
+                                                   lay-filter="test3" id="pictureTable">
+                                                <thead>
+                                                <tr>
+                                                    <th lay-data="{field:'picName', width:120, sort: true}">相册名</th>
+                                                    <th lay-data="{field:'picUrl', edit: 'text', minWidth: 120}">相册地址</th>
+                                                    <th lay-data="{field:'picClassification', minWidth: 80,templet:function(d){
+                                                        switch(d.picClassification){
+                                                            case 1: return '人物';break;
+                                                            case 2: return '风景';break;
+                                                            case 3: return '旅行';break;
+                                                        }
+                                                    }}">相册分类</th>
+                                                    <th lay-data="{field:'type',width:80, sort: true,templet:function(d){
+                                                        switch(d.type){
+                                                            case 1: return '公开';break;
+                                                            case 2: return '私有';break;
+                                                        }
+                                                    }}">类型</th>
+                                                    <th lay-data="{field:'picState', width:100, sort: true,templet:function(d){
+                                                        switch(d.picState){
+                                                            case 1: return '正常';break;
+                                                            case 2: return '禁用';break;
+                                                        }
+                                                    }}">相册状态</th>
+                                                    <th lay-data="{field:'uploadTime', width:150, sort: true, templet: function(d) {
+                                                        var date = new Date(d.uploadTime);
+                                                    return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日' + date.getHours() + '时' + date.getMinutes() + '分' + date.getSeconds() + '秒';
+                                                    }}">上传时间</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--底部部分-->
+<div id="footer">
+    <div class="waper">
+        <div class="footerwaper clearfix">
+            <div class="footer_intro l">
+                <p>Copyright © 2021 xiaomuzi | 个人网站 </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

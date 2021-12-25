@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>视频管理</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <!--引入公共模块-->
+    <script type="application/javascript" src="../js/backCommon.js"></script>
+</head>
+<body>
+<form class="layui-form xbs" action="">
+    <div class="layui-form-pane">
+        <div class="layui-form-item" style="display: inline-block;">
+            <div class="layui-input-inline"><input type="text" name="uname" placeholder="用户ID/视频名" autocomplete="off"
+                                                   class="layui-input"></div>
+            <div class="layui-input-inline" style="width:80px">
+                <button class="layui-btn" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+            </div>
+        </div>
+    </div>
+</form>
+<table id="video_list" lay-filter="test"></table>
+<script src="../layui/layui.js"></script>
+<!-- 开关 -->
+<script type="text/html" id="switchTpl">
+    <input type="checkbox" name="lock" value="{{d.userId}}" lay-skin="switch" lay-text="解冻|冻结" lay-filter="lockState" {{ d.videoState == 1 ? 'checked' : '' }}>
+</script>
+<!--操作：删除-->
+<script type="text/html">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="dataDel('{{d.userId}}',getWeb() + 'admin/user/delete.action')" lay-event="del">删除</a>
+</script>
+<script> layui.use(['table','form'], function () {
+    var table = layui.table;/*表格实例*/
+    var form = layui.form;
+    table.render({
+        elem: '#video_list',
+        height: 312,
+        url: getWeb() + '/admin/video/query.action' /*数据接口*/,
+        page: true /*开启分页*/,
+        cols: [[ /*表头*/ {
+            field: 'zizeng',
+            width: 80,
+            title: '序号',
+            fixed: 'left',
+            templet: '#zizeng',
+            sort: true
+        }, {field: 'userId', title: '用户编号', width: 120, fixed: 'left'}, , {
+            field: 'videoId',
+            title: '视频编号',
+            width: 100,
+            fixed: 'left'
+        }, {field: 'videoName', title: '视频名', width: 100, sort: true}, {
+            field: 'videoUrl',
+            title: '视频地址',
+            width: 100
+        }, {field: 'videoPic', title: '视频封面', width: 100}, {
+            field: 'videoClassification',
+            title: '视频分类',
+            width: 120,
+            sort: true
+        }, {field: 'type', title: '类型', width: 80, sort: true}, {
+            field: 'videoState',
+            title: '视频状态',
+            width: 120,
+            sort: true
+        }, {field: 'uploadTime', title: '上传时间', width: 120, templet: function (d) {
+
+            }}, {
+            field: 'lock',
+            title: '操作',
+            width: 100,
+            templet: '#switchTpl',
+            unresize: true
+        }]],
+        toolbar: true/*开启打印，导出*/
+    });
+    /*绑定搜索点击事件*/
+    $('.layui-btn').on('click', function() {
+
+        /*表格重载(搜索的点击时间调用的是方法)*/
+        table.reload('user_list', {
+            url: getWeb() + '/admin/video/query.action' /*数据接口*/,
+            method: REQUEST_POST,
+            where: {
+                arg: $('input[name=uname]').val()
+            },
+            page: true,
+            parseData:function (res){
+                return{
+                    "code":{
+                        "code":res.code
+                    },
+                    "msg":{
+                        "msg":res.msg
+                    },
+                    "data":{
+                        "data":res.data
+                    },
+                }
+            }
+        });
+    });
+
+    //监听指定开关
+    form.on('switch(switchTest)', function(data) {
+        userStatus(this,data)
+    });
+});</script>
+<script type="text/html" id="zizeng"> {{d.LAY_TABLE_INDEX+1}}</script>
+</body>
+</html>

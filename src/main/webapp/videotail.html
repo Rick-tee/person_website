@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>热门视频列表</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="referrer" content="never" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/base.css" rel="stylesheet">
+    <link href="static/css/m.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <!--引入jquery.js-->
+    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="static/js/comm.js"></script>
+    <script src="http://cj.ip3q.com/e/extend/lgyPl/assets/hd.js?v=1" type="text/javascript"></script>
+    <script src="http://cj.ip3q.com/e/extend/lgyPl/assets/lgyPl.js?v=1" type="text/javascript"></script>
+    <!--jquery cookie插件-->
+    <script type="application/javascript" src="static/js/jquery.cookie.js"></script>
+    <script type="application/javascript" src="static/js/sweetalert.min.js"></script>
+    <!--引入core.js-->
+    <script type="application/javascript" src="static/js/core.js"></script>
+    <!--引入videotail.js-->
+    <script type="application/javascript" src="static/js/videotail.js"></script>
+</head>
+<body>
+<div class="ph_margin"></div>
+<div class="play_box">
+    <div class="box">
+        <div class="play_content">
+            <div class="play_video" id="playVideo">
+            </div>
+
+            <div class="play_info">
+                <section>
+                    <h1 id="VideoTitle">网络请求错误！ </h1>
+                    <p class="play_click" id="heat">热度：
+                        1
+                    </p>
+                    <p class="play_time" id="time">时间：2021-05-22</p>
+                    <p class="play_about"
+                       id="content"><span id="description">简介：当前视频暂无简介<br>
+                    </span>
+                        <a href="javascript:void(0)">收起</a>
+                    </p>
+                    <div class="play_tags">
+                        <a href="#"
+                            target="_self" id="tag">电视剧</a>
+                    </div>
+                    <div class="diggit"><a
+                            href="javascript:void(0)" onclick="praise()">很赞哦！
+                    </a></div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="box">
+    <h2 class="h_title">猜你喜欢</h2>
+    <div class="all_videos">
+        <ul id="guessVideo">
+            <!--建议4个-->
+        </ul>
+        <div class="epages">
+            &nbsp;&nbsp;&nbsp;
+            <b id="videoFirst">1</b>&nbsp;
+            <a href="javascript:void(0)" id="videoPreviousPage" onclick="videoPreviousPage()">上一页</a>&nbsp;
+            <a href="javascript:void(0)" id="videoNextPage" onclick="videoNextPage()">下一页</a>&nbsp;
+            <a href="javascript:void(0)" id="videoPage" onclick="videoLastPage()">尾页</a>
+            <p >共&nbsp;<span id="videoTotalPageNumber">0</span>页</p>
+        </div>
+    </div>
+    <span style="margin-left: 50%;"></span>
+    <div class="clear"></div>
+
+</div>
+</body>
+</html>
