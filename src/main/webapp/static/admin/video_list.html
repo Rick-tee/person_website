@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>视频管理</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <!--引入jquery-->
+    <script type="application/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <!--引入弹窗-->
+    <script type="application/javascript" src="../js/sweetalert.min.js"></script>
+    <!--引入公共模块-->
+    <script type="application/javascript" src="../js/backCommon.js"></script>
+</head>
+<body>
+<div class="layui-form-pane">
+    <div class="layui-form-item" style="display: inline-block;">
+        <div class="layui-input-inline"><input type="text" name="uname" placeholder="用户ID/视频id" autocomplete="off"
+                                               class="layui-input"></div>
+        <div class="layui-input-inline" style="width:80px">
+            <button class="layui-btn" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+        </div>
+    </div>
+</div>
+<table id="video_list" class="layui-hide" lay-filter="menu-filter"></table>
+<script src="../layui/layui.js"></script>
+<!-- 开关 -->
+<script type="text/html" id="switchTest">
+    <input type="checkbox" value="{{d.videoId}}" lay-skin="switch" lay-text="冻结|解冻" lay-filter="switchTest" {{
+           d.videoState== 2 ? 'checked' : '' }}>
+</script>
+
+<!--操作：删除-->
+<script type="text/html" id="switchTpl">
+    <a class="layui-btn layui-btn-danger layui-btn-xs"
+       onclick="dataDel('{{d.videoId}}',getWeb() + 'admin/video/delete.action',REQUEST_POST)" lay-event="del">删除</a>
+</script>
+<script> layui.use(['table', 'form'], function () {
+    var table = layui.table;/*表格实例*/
+    var form = layui.form;
+    table.render({
+        elem: '#video_list',
+        height: 312,
+        url: getWeb() + 'admin/video/query.action' /*数据接口*/,
+        method: REQUEST_POST,
+        page: true /*开启分页*/,
+        cols: [[ /*表头*/ {
+            field: 'zizeng',
+            width: 80,
+            title: '序号',
+            fixed: 'left',
+            templet: '#zizeng',
+            sort: true
+        }, {field: 'userId', title: '用户编号', width: 100, fixed: 'left'}
+        , {field: 'videoId', title: '视频编号', width: 100}
+        , {field: 'videoName', title: '视频主题名', width: 100,}
+        , {field: 'videoUrl', title: '视频地址', width: 100}
+        ,{field: 'videoPic', title: '视频封面', width: 120}
+        , {field: 'videoClassification', title: '视频分类', width: 120, sort: true,templet: function (d) {
+                    if (d.videoClassification == 1){
+                        return "生活"
+                    }else if (d.videoClassification == 2){
+                        return "搞笑"
+                    }
+                    return "舞蹈"
+                }}
+        , {field: 'type', title: '类型', width: 120, sort: true,templet: function (d) {
+                    if (d.type == 1){
+                        return "公开"
+                    }
+                    return "私有"
+                }}
+        , {field: 'videoState', title: '视频状态', width: 120, sort: true,templet: "#switchTest"}
+        ,{field: 'uploadTime', title: '更新时间', width: 240, sort: true,
+                templet: function (d) {
+                    if (d.uploadTime == null) {
+                        return ""
+                    }
+                    let date = new Date(d.uploadTime)
+                    return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日' + date.getHours() + '时' + date.getMinutes() + '分' + date.getSeconds() + '秒';
+                }
+            }, {field: 'lock', title: '操作', width: 100, templet: '#switchTpl', unresize: true}]],
+        toolbar: true/*开启打印，导出*/
+    });
+
+    /*绑定搜索点击事件*/
+    $('.layui-btn').on('click', function () {
+        //初始化定义搜索地址
+        let url = getWeb() + "admin/video/queryVideoByVideoIdOrUserId.action";
+        //判断搜索内容
+        if ($('input[name=uname]').val().trim().length == 0) {
+            //重定义搜索地址
+            url = getWeb() + "admin/video/query.action";
+        }
+
+        /*表格重载(搜索的点击时间调用的是方法)*/
+        table.reload('video_list', {
+            url: url,
+            method: REQUEST_POST,
+            where: {
+                arg: $('input[name=uname]').val().trim()
+            },
+            page: true,
+            parseData: function (res) {
+                return {
+                    "code": res.code,
+                    "mes": res.mes,
+                    "data": {
+                        "data": res.data
+                    }
+                }
+            }
+        });
+    });
+
+    //监听指定开关
+    form.on('switch(switchTest)', function (data) {
+        changeStatus(this,data,getWeb() + "admin/video/update.action",REQUEST_POST)
+    });
+});
+</script>
+<script type="text/html" id="zizeng"> {{d.LAY_TABLE_INDEX+1}}</script>
+</body>
+</html>

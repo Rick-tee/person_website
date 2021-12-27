@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head><title>个人网站后台系统管理登录</title><!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"><!-- style CSS -->
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" media="all"><!-- fontawesome -->
+    <link rel="stylesheet" href="static/css/font-awesome.min.css" type="text/css" media="all">
+    <!--引入核心js-->
+    <script type="application/javascript" src="static/js/jquery-3.6.0.min.js"></script>
+    <!--引入cookie-->
+    <script type="application/javascript" src="static/js/jquery.cookie.js"></script>
+    <!--引入sweet弹窗-->
+    <script type="application/javascript" src="static/js/sweetalert.min.js"></script>
+    <script type="application/javascript" src="static/js/adminLogin.js"></script>
+</head>
+<body>
+<section class="main">
+    <div class="bottom-grid">
+        <div class="logo"><h1><a href=""> 个人网站后台系统管理登录</a></h1></div>
+    </div><!--登录-->
+    <div class="w3lhny-register">
+        <div class="iconhny"><span class="fa fa-user-plus"></span></div><!--表单-->
+        <form class="register-form">
+            <fieldset>
+                <div class="form"><!--用户名-->
+                    <div class="form-row"><span class="fa fa-user"></span>
+                        <input type="text" class="form-text" placeholder="用户名" required="" id="userName" onfocus>
+                    </div>
+                    <!--密码-->
+                    <div class="form-row"><span class="fa fa-lock"></span>
+                        <input type="password" class="form-text" placeholder="密码" required="" id="password">
+                    </div>
+                    <div class="form-row button-login">
+                        <!--登录-->
+                        <button class="btn btn-login">登录</button>
+                        <br>
+                        <a href="#" onclick="back(this)" style="color: #3b3663" >返回</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>
+</body><!-- //Body --></html>

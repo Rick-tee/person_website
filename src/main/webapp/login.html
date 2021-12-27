@@ -1,0 +1,127 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>登录注册</title>
+
+    <link rel="stylesheet" href="static/css/normalize.min.css">
+    <link rel="stylesheet" href="static/css/Style2.css">
+    <!--引入bootstrap的核心css样式文件-->
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <!--引入jquery的核心js文件-->
+    <script type="application/javascript" src="static/js/jquery-3.6.0.min.js"></script>
+    <!--引入bootstrap的核心js文件-->
+    <script type="application/javascript" src="static/js/bootstrap.min.js"></script>
+    <!--引入jquery cookie插件-->
+    <script type="application/javascript" src="static/js/jquery.cookie.js"></script>
+    <!--引入sweet弹窗-->
+    <script type="application/javascript" src="static/js/sweetalert.min.js"></script>
+    <!--register.js-->
+    <script type="application/javascript" src="static/js/register.js"></script>
+    <!--login.js-->
+    <script type="application/javascript" src="static/js/login.js"></script>
+    <!--忘记密码-->
+    <script type="application/javascript" src="static/js/forgetPassword.js"></script>
+
+</head>
+
+<!--核心内容-->
+<body>
+<div id="formContainer" class="dwo">
+    <div class="formLeft">
+        <img src="static/img/default.png">
+    </div>
+    <div class="formRight">
+
+        <!-- 忘记密码表单 -->
+        <form id="forgot" class="otherForm">
+            <header>
+                <h1>忘记密码</h1>
+                <p>输入手机号码或邮箱找回密码</p>
+            </header>
+            <section>
+                <label>
+                    <p>手机号码/邮箱<span class="error" id="forgetPhoneAndEmail"></span></p>
+                    <input type="email" id="msg" placeholder=" " onfocus>
+                    <div class="border"></div>
+                    <br>
+                    <p>验证码<span class="error" id="codeError"></span></p>
+                    <input type="tel" id="code" placeholder="">
+                    <div class="border"></div>
+                </label>
+                <button type="button" style="width: 70%" id="verification">验证</button>
+                <button type="button" class="get_code" style="width: 30%" id="getCode">获取验证码</button>
+            </section>
+            <footer>
+                <button type="button" class="forgotBtn">返回</button>
+            </footer>
+        </form>
+
+        <!-- 登录表单 -->
+        <form id="loginForm">
+            <header>
+                <h1>欢迎回来</h1>
+                <p>请先登录</p>
+            </header>
+            <section>
+                <label>
+                    <p>手机号码/邮箱<span class="error" id="phoneEmailError"></span></p>
+                    <input type="text" id="loginPhone" placeholder=" " onfocus required>
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>密码<span class="error" id="loginPwdError"></span></p>
+                    <input type="password" id="loginPassword" placeholder=" " required>
+                    <div class="border"></div>
+                </label>
+                <button type="button" id="login" style="width: 70%">登录</button>
+                <button type="button" class="adminLogin" style="width: 30%" onclick="window.location.href='adminLogin.html'">管理员登录</button>
+            </section>
+            <footer>
+                <button type="button" class="forgotBtn">忘记密码？</button>
+                <button type="button" class="registerBtn">注册新用户</button>
+            </footer>
+        </form>
+
+        <!-- 注册表单 -->
+        <form id="register" class="otherForm">
+            <header>
+                <h1>用户注册</h1>
+                <p>注册享受更多精彩！</p>
+            </header>
+            <section>
+                <label>
+                    <p>用户名<span class="error" id="userError"></span></p>
+                    <input type="text" id="userName" placeholder=" ">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>手机号码<span class="error" id="phoneError"></span></p>
+                    <input type="tel" placeholder=" " required id="phone" onfocus>
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>邮箱<span class="error" id="emailError"></span></p>
+                    <input type="email" id="email" placeholder=" ">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>密码<span class="error" id="passwordError"></span></p>
+                    <input type="password" required placeholder=" " id="password">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>重复密码<span class="error" id="dupPwdError"></span></p>
+                    <input type="password" required placeholder=" " id="duplicatePassword">
+                    <div class="border"></div>
+                </label>
+                <button id="btn_register" type="button">注册</button>
+            </section>
+            <footer>
+                <button type="button" class="registerBtn">返回</button>
+            </footer>
+        </form>
+    </div>
+</div>
+<script src="static/js/script.js"></script>
+</body>
+</html>
