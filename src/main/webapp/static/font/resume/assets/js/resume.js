@@ -1,4 +1,10 @@
 $(function () {
+    //您的姓名按键弹起
+    $("#name").change(function () {
+        //个人信息姓名获得
+        $("#confirmName").val($("#name").val().trim())
+        $("#personName").text($("#name").val().trim())
+    })
 
     //默认所有信息 禁用无法修改
     disableAllTextBoxes()
@@ -28,8 +34,8 @@ $(function () {
         //默认所有信息 禁用无法修改
         disableAllTextBoxes()
 
-        //您的姓名失去焦点
-        $("#name").change(function () {
+        //您的姓名按键弹起
+        $("#name").keyup(function () {
             //个人信息姓名获得
             $("#confirmName").val($("#name").val().trim())
             $("#personName").text($("#name").val().trim())

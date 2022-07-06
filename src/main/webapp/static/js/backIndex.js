@@ -77,3 +77,11 @@ function pageJump(obj){
         $(obj).attr('href',getWeb() + "adminLogin.html")
     }
 }
+
+/**
+ * 更新浏览器页面
+ */
+function updateBrowserPage(){
+    //刷新浏览器
+    location.reload()
+}

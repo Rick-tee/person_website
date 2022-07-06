@@ -342,7 +342,7 @@ $(function () {
             , multiple: true
             , number: 300
             , auto: false
-            , bindAction: '#testListAction3'
+            , bindAction: '#testListAction2'
             , choose: function (obj) {
                 var that = this;
                 var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
@@ -951,8 +951,9 @@ function myVideoSave(){
             });
         }
     })
+    //setInterval('updateBrowserPage(5)',1000)
     //刷新浏览器
-    location.reload()
+    //location.reload()
 }
 
 /**
@@ -1035,7 +1036,7 @@ function myMusicSave(){
         }
     })
     //刷新浏览器
-    location.reload()
+    //location.reload()
 }
 
 /**
@@ -1119,7 +1120,7 @@ function myPictureSave(){
         }
     })
     //刷新浏览器
-    location.reload()
+    //location.reload()
 }
 
 /**
@@ -1127,4 +1128,12 @@ function myPictureSave(){
  */
 function resume(){
     window.location.href = getWeb() + "static/font/resume/resume.html";
+}
+
+/**
+ * 更新浏览器页面
+ */
+function updateBrowserPage(){
+    //刷新浏览器
+    location.reload()
 }

@@ -125,6 +125,7 @@ public class VideoController {
         video.setUserId(userId);
         video.setVideoId(videoId);
         video.setVideoPic(fileName);
+        video.setVideoState(Byte.valueOf("1"));
 
         //文件写入数据库
         videoService.addSelectiveByUserId(video);

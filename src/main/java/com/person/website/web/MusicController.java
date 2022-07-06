@@ -154,6 +154,7 @@ public class MusicController {
         music.setUserId(userId);
         music.setMusicId(musicId);
         music.setMusicPic(fileName);
+        music.setMusicState(Byte.valueOf("1"));
 
         //文件写入数据库
         musicService.addSelectiveByUserId(music);

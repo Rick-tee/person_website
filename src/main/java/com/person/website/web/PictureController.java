@@ -182,6 +182,7 @@ public class PictureController {
         picture.setPicClassification(Byte.valueOf(pictureClassification));
         picture.setPicName(pictureName);
         picture.setType(Byte.valueOf(type));
+        picture.setPicState(Byte.valueOf("1"));
         picture.setPicId(pictureId);
 
         result = pictureService.renewPictureByPictureId(picture);
